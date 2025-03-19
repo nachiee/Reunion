@@ -3,77 +3,142 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reunion Party Invitation</title>
+    <title>Primary School Reunion</title>
     <style>
         body {
+            margin: 0;
+            padding: 0;
             font-family: 'Arial', sans-serif;
-            background: url('old-theme-background.jpg') no-repeat center center fixed;
-            background-size: cover;
-            text-align: center;
-            color: white;
+            background: linear-gradient(to bottom, #0A2E36, #04121E);
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
         }
         .container {
-            max-width: 600px;
-            margin: 50px auto;
-            padding: 20px;
             background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+            text-align: center;
+            width: 90%;
+            max-width: 500px;
+            border: 2px solid #ffd700;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: scale(0.9); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+        h1 {
+            color: #ffd700;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        .header-img {
+            width: 100%;
+            max-width: 300px;
+            margin-bottom: 20px;
             border-radius: 10px;
         }
-        h1, h2, p {
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
         }
-        .highlight {
-            color: #FFD700;
-            font-weight: bold;
+        p {
+            font-size: 1.1em;
+            line-height: 1.6;
+            margin: 10px 0;
         }
-        #countdown {
-            font-size: 24px;
+        .details {
+            background: rgba(255, 215, 0, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+        }
+        .host {
+            color: #ffd700;
             font-weight: bold;
             margin-top: 20px;
-            color: #FFD700;
         }
+        .countdown {
+            font-size: 1.2em;
+            color: #00ffff;
+            margin-top: 20px;
+            background: rgba(0, 255, 255, 0.1);
+            padding: 10px;
+            border-radius: 10px;
+        }
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: #ffd700;
+            opacity: 0.7;
+            animation: fall linear infinite;
+        }
+        @keyframes fall {
+            0% { transform: translateY(-100vh); }
+            100% { transform: translateY(100vh); }
+        }
+        .confetti:nth-child(2n) { background: #ff69b4; animation-duration: 4s; left: 20%; }
+        .confetti:nth-child(3n) { background: #00ff00; animation-duration: 5s; left: 40%; }
+        .confetti:nth-child(4n) { background: #ff4500; animation-duration: 3.5s; left: 60%; }
     </style>
 </head>
 <body>
+    <!-- Confetti decoration -->
+    <div class="confetti" style="left: 10%; animation-duration: 4.5s;"></div>
+    <div class="confetti" style="left: 30%; animation-duration: 5s;"></div>
+    <div class="confetti" style="left: 50%; animation-duration: 4s;"></div>
+    <div class="confetti" style="left: 70%; animation-duration: 3.5s;"></div>
+
     <div class="container">
-        <h1>🎉 PRIMARY SCHOOL REUNION 🎉</h1>
-        <h2 class="highlight">Let’s Rewind the Memories!</h2>
-        <p>Hey Old Buddies! It's time to reunite, share laughs, and relive the golden school days. Join us for an unforgettable night! 🎊</p>
-        <h3>Date: <span class="highlight">22 - 23 March</span></h3>
-        <h3>Time: <span class="highlight">Evening 7 PM</span></h3>
-        <h3>Venue: <span class="highlight">Waghamata Temple Garden, Paratwada, Amravati</span></h3>
-        <p>Don't miss this chance to meet your childhood friends and create new memories! 🏫❤️</p>
-        <h3>Hosted By:</h3>
-        <h2 class="highlight">🔥 Nachiket Dahake </h2>
-        <p>(Yes, I'm the mastermind behind this epic reunion, so you better be there! 😎)</p>
-
-        <!-- Live Countdown Timer -->
-        <h2>Countdown to Reunion 🎯</h2>
-        <p id="countdown">Loading...</p>
-
-        <script>
-            function updateCountdown() {
-                const eventDate = new Date("March 22, 2025 19:00:00").getTime();
-                const now = new Date().getTime();
-                const difference = eventDate - now;
-
-                if (difference <= 0) {
-                    document.getElementById("countdown").innerText = "🎉 The reunion is happening now! 🎉";
-                    return;
-                }
-
-                const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((difference % (1000 * 60)) / 1000);
-
-                document.getElementById("countdown").innerText = 
-                    `🕒 ${days}d ${hours}h ${minutes}m ${seconds}s left! ⏳`;
-            }
-
-            setInterval(updateCountdown, 1000);
-            updateCountdown();
-        </script>
+        <img src="aaa.jpg" alt="Reunion Header" class="header-img">
+        <h1>PRIMARY SCHOOL REUNION</h1>
+        <p>Let's Rewind the Memories!</p>
+        <div class="details">
+            <p>Hey Old Buddies! It's time to reunite, share laughs, and relive the golden school days. Join us for an unforgettable night!</p>
+            <p><strong>Date:</strong> 22 - 23 March</p>
+            <p><strong>Time:</strong> Evening 7 PM</p>
+            <p><strong>Venue:</strong> Waghamata Temple Garden, Paratwada, Amravati</p>
+            <p>Don't miss this chance to meet your childhood friends and create new memories!</p>
+        </div>
+        <p class="host">Hosted By: <span>Nachiket Dahake</span></p>
+        <div class="countdown">
+            <p id="countdownText">Countdown to Reunion: Calculating...</p>
+        </div>
     </div>
+
+    <script>
+        // Set the target date and time (March 22, 2025, 7:00 PM IST)
+        const targetDate = new Date("March 22, 2025 19:00:00 GMT+0530").getTime();
+
+        // Update the countdown every 1 second
+        const countdown = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            // Calculate time components
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Display the result
+            document.getElementById("countdownText").innerHTML = `Countdown to Reunion: ${days}d ${hours}h ${minutes}m ${seconds}s left!`;
+
+            // If the countdown is over, display a message
+            if (distance < 0) {
+                clearInterval(countdown);
+                document.getElementById("countdownText").innerHTML = "The reunion has started!";
+            }
+        }, 1000);
+    </script>
 </body>
 </html>
