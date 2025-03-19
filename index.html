@@ -44,6 +44,7 @@
             max-width: 300px;
             margin-bottom: 20px;
             border-radius: 10px;
+            animation: bounce 2s infinite;
         }
         @keyframes bounce {
             0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
@@ -60,6 +61,38 @@
             padding: 15px;
             border-radius: 10px;
             margin: 15px 0;
+            position: relative;
+        }
+        .details .detail-item {
+            display: flex;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px dashed #ffd700; /* Dashed separator */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .details .detail-item:last-child {
+            border-bottom: none; /* Remove border for the last item */
+        }
+        .details .detail-item:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+        }
+        .details .detail-item .icon {
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+            display: inline-block;
+        }
+        .details .detail-item p {
+            margin: 0;
+            font-size: 1em;
+            display: flex;
+            align-items: center;
+            color: #fff;
+        }
+        .details .detail-item strong {
+            color: #ffd700;
+            margin-right: 5px;
         }
         .host {
             color: #ffd700;
@@ -92,22 +125,36 @@
     </style>
 </head>
 <body>
-    <!-- Confetti decoration -->
     <div class="confetti" style="left: 10%; animation-duration: 4.5s;"></div>
     <div class="confetti" style="left: 30%; animation-duration: 5s;"></div>
     <div class="confetti" style="left: 50%; animation-duration: 4s;"></div>
     <div class="confetti" style="left: 70%; animation-duration: 3.5s;"></div>
 
     <div class="container">
-        <img src="aaa.jpg" alt="Reunion Header" class="header-img">
+        <img src="reunion_photo.jpg" alt="Reunion Header" class="header-img">
         <h1>PRIMARY SCHOOL REUNION</h1>
         <p>Let's Rewind the Memories!</p>
         <div class="details">
-            <p>Hey Old Buddies! It's time to reunite, share laughs, and relive the golden school days. Join us for an unforgettable night!</p>
-            <p><strong>Date:</strong> 22 - 23 March</p>
-            <p><strong>Time:</strong> Evening 7 PM</p>
-            <p><strong>Venue:</strong> Waghamata Temple Garden, Paratwada, Amravati</p>
-            <p>Don't miss this chance to meet your childhood friends and create new memories!</p>
+            <div class="detail-item">
+                <span class="icon">📜</span>
+                <p>Hey Old Buddies! It's time to reunite, share laughs, and relive the golden school days. Join us for an unforgettable night!</p>
+            </div>
+            <div class="detail-item">
+                <span class="icon">📅</span>
+                <p><strong>Date:</strong> 22 - 23 March</p>
+            </div>
+            <div class="detail-item">
+                <span class="icon">⏰</span>
+                <p><strong>Time:</strong> Evening 7 PM</p>
+            </div>
+            <div class="detail-item">
+                <span class="icon">📍</span>
+                <p><strong>Venue:</strong> Waghamata Temple Garden, Paratwada, Amravati</p>
+            </div>
+            <div class="detail-item">
+                <span class="icon">🎉</span>
+                <p>Don't miss this chance to meet your childhood friends and create new memories!</p>
+            </div>
         </div>
         <p class="host">Hosted By: <span>Nachiket Dahake</span></p>
         <div class="countdown">
