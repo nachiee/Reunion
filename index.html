@@ -16,17 +16,36 @@
             align-items: center;
             min-height: 100vh;
             overflow-x: hidden;
+            position: relative;
+        }
+        /* Parallax Background */
+        .parallax-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://cdn.pixabay.com/photo/2016/11/29/05/45/astronomy-1867616_1280.jpg') repeat;
+            opacity: 0.1;
+            z-index: -1;
+            animation: moveBackground 20s linear infinite;
+        }
+        @keyframes moveBackground {
+            0% { background-position: 0 0; }
+            100% { background-position: 100% 100%; }
         }
         .container {
             background: rgba(0, 0, 0, 0.7);
             padding: 20px;
             border-radius: 15px;
-            box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
             text-align: center;
             width: 90%;
             max-width: 500px;
             border: 2px solid #ffd700;
             animation: fadeIn 1.5s ease-in-out;
+            position: relative;
+            z-index: 1;
         }
         @keyframes fadeIn {
             0% { opacity: 0; transform: scale(0.9); }
@@ -38,17 +57,19 @@
             margin-bottom: 10px;
             text-transform: uppercase;
             letter-spacing: 2px;
+            text-shadow: 0 0 10px #00ffff;
+            animation: glow 2s infinite alternate;
+        }
+        @keyframes glow {
+            0% { text-shadow: 0 0 10px #00ffff; }
+            100% { text-shadow: 0 0 20px #00ffff, 0 0 30px #ffd700; }
         }
         .header-img {
             width: 100%;
             max-width: 300px;
             margin-bottom: 20px;
             border-radius: 10px;
-        }
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-            40% { transform: translateY(-10px); }
-            60% { transform: translateY(-5px); }
+            filter: drop-shadow(0 0 10px #ffd700);
         }
         p {
             font-size: 1.1em;
@@ -60,33 +81,35 @@
             padding: 15px;
             border-radius: 10px;
             margin: 15px 0;
-            position: relative;
+            border: 1px solid #00ffff;
+            transition: all 0.3s ease;
+        }
+        .details:hover {
+            box-shadow: 0 0 20px #00ffff;
+            border-color: #ffd700;
         }
         .details .detail-item {
             display: flex;
             align-items: center;
             padding: 10px 0;
-            border-bottom: 1px dashed #ffd700; /* Dashed separator */
+            border-bottom: 1px dashed #ffd700;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         .details .detail-item:last-child {
-            border-bottom: none; /* Remove border for the last item */
+            border-bottom: none;
         }
         .details .detail-item:hover {
-            transform: scale(1.02);
-            box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.7);
         }
         .details .detail-item .icon {
             width: 30px;
             height: 30px;
             margin-right: 10px;
-            display: inline-block;
         }
         .details .detail-item p {
             margin: 0;
             font-size: 1em;
-            display: flex;
-            align-items: center;
             color: #fff;
         }
         .details .detail-item strong {
@@ -97,6 +120,7 @@
             color: #ffd700;
             font-weight: bold;
             margin-top: 20px;
+            text-shadow: 0 0 5px #00ffff;
         }
         .countdown {
             font-size: 1.2em;
@@ -105,37 +129,80 @@
             background: rgba(0, 255, 255, 0.1);
             padding: 10px;
             border-radius: 10px;
+            box-shadow: 0 0 10px #00ffff;
         }
-        .confetti {
+        /* 3D Cube */
+        .cube-container {
+            position: absolute;
+            top: -150px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 100px;
+            perspective: 1000px;
+        }
+        .cube {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            animation: spin 10s infinite linear;
+        }
+        @keyframes spin {
+            0% { transform: rotateX(0deg) rotateY(0deg); }
+            100% { transform: rotateX(360deg) rotateY(360deg); }
+        }
+        .cube-face {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: rgba(0, 255, 255, 0.3);
+            border: 2px solid #ffd700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1em;
+            color: #fff;
+            text-shadow: 0 0 5px #00ffff;
+        }
+        .front  { transform: translateZ(50px); }
+        .back   { transform: translateZ(-50px) rotateY(180deg); }
+        .right  { transform: rotateY(90deg) translateZ(50px); }
+        .left   { transform: rotateY(-90deg) translateZ(50px); }
+        .top    { transform: rotateX(90deg) translateZ(50px); }
+        .bottom { transform: rotateX(-90deg) translateZ(50px); }
+        /* Particle Effects */
+        canvas#particles {
             position: fixed;
-            width: 10px;
-            height: 10px;
-            background: #ffd700;
-            opacity: 0.7;
-            animation: fall linear infinite;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
         }
-        @keyframes fall {
-            0% { transform: translateY(-100vh); }
-            100% { transform: translateY(100vh); }
-        }
-        .confetti:nth-child(2n) { background: #ff69b4; animation-duration: 4s; left: 20%; }
-        .confetti:nth-child(3n) { background: #00ff00; animation-duration: 5s; left: 40%; }
-        .confetti:nth-child(4n) { background: #ff4500; animation-duration: 3.5s; left: 60%; }
     </style>
 </head>
 <body>
-    <div class="confetti" style="left: 10%; animation-duration: 4.5s;"></div>
-    <div class="confetti" style="left: 30%; animation-duration: 5s;"></div>
-    <div class="confetti" style="left: 50%; animation-duration: 4s;"></div>
-    <div class="confetti" style="left: 70%; animation-duration: 3.5s;"></div>
+    <div class="parallax-bg"></div>
+    <canvas id="particles"></canvas>
 
     <div class="container">
+        <!-- 3D Cube -->
+        <div class="cube-container">
+            <div class="cube">
+                <div class="cube-face front">Nachiket</div>
+                <div class="cube-face back">Rahul</div>
+                <div class="cube-face right">Priya</div>
+                <div class="cube-face left">Amit</div>
+                <div class="cube-face top">Sneha</div>
+                <div class="cube-face bottom">Vikas</div>
+            </div>
+        </div>
         <img src="aaa.jpg" alt="Reunion Header" class="header-img">
         <h1>PRIMARY SCHOOL REUNION</h1>
         <p>Let's Rewind the Memories!</p>
         <div class="details">
             <div class="detail-item">
-                
                 <p>Hey Old Buddies! It's time to reunite, share laughs, and relive the golden school days. Join us for an unforgettable night!</p>
             </div>
             <div class="detail-item">
@@ -151,41 +218,95 @@
                 <p><strong>Venue:</strong> Waghamata Temple Garden, Paratwada, Amravati</p>
             </div>
             <div class="detail-item">
-                
                 <p>Don't miss this chance to meet your childhood friends and create new memories!</p>
             </div>
         </div>
         <p class="host">Hosted By: <span>Nachiket</span></p>
-         <p>You Better Be There On Time~</p>
+        <p>You Better Be There On Time~</p>
         <div class="countdown">
             <p id="countdownText">Countdown to Reunion: Calculating...</p>
         </div>
     </div>
 
     <script>
-        // Set the target date and time (March 22, 2025, 7:00 PM IST)
+        // Countdown Timer
         const targetDate = new Date("March 22, 2025 19:00:00 GMT+0530").getTime();
-
-        // Update the countdown every 1 second
         const countdown = setInterval(function() {
             const now = new Date().getTime();
             const distance = targetDate - now;
-
-            // Calculate time components
             const days = Math.floor(distance / (1000 * 60 * 60 * 24));
             const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            // Display the result
             document.getElementById("countdownText").innerHTML = `Countdown to Reunion: ${days}d ${hours}h ${minutes}m ${seconds}s left!`;
-
-            // If the countdown is over, display a message
             if (distance < 0) {
                 clearInterval(countdown);
                 document.getElementById("countdownText").innerHTML = "The reunion has started!";
             }
         }, 1000);
+
+        // Particle Effects
+        const canvas = document.getElementById('particles');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        let particlesArray = [];
+
+        class Particle {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+                this.size = Math.random() * 5 + 1;
+                this.speedX = Math.random() * 3 - 1.5;
+                this.speedY = Math.random() * 3 - 1.5;
+                this.color = `hsl(${Math.random() * 360}, 100%, 50%)`;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.size > 0.2) this.size -= 0.1;
+            }
+            draw() {
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function initParticles() {
+            for (let i = 0; i < 100; i++) {
+                particlesArray.push(new Particle(Math.random() * canvas.width, Math.random() * canvas.height));
+            }
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < particlesArray.length; i++) {
+                particlesArray[i].update();
+                particlesArray[i].draw();
+                if (particlesArray[i].size <= 0.2) {
+                    particlesArray.splice(i, 1);
+                    i--;
+                }
+            }
+            requestAnimationFrame(animateParticles);
+        }
+
+        canvas.addEventListener('click', (e) => {
+            for (let i = 0; i < 20; i++) {
+                particlesArray.push(new Particle(e.x, e.y));
+            }
+        });
+
+        initParticles();
+        animateParticles();
+
+        // Audio (Uncomment to enable)
+        /*
+        const audio = new Audio('https://www.soundjay.com/buttons/school-bell.mp3');
+        audio.play();
+        */
     </script>
 </body>
 </html>
